@@ -1,4 +1,4 @@
-# Bigdata-Hadoop-Spark
+# BigData-Hadoop-Spark
 
 
 This repository contains two MapReduce solutions built using Python for Hadoop Streaming. Each problem demonstrates the use of the MapReduce programming model to solve real-world data analysis tasks involving e-commerce and web server logs.
