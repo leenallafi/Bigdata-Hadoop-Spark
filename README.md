@@ -89,19 +89,6 @@ Analyze `ben_inf_allFeatures_balanced_FS01.csv`, a dataset with features related
 
 ---
 
-## ✅ Getting Started
 
-### 📦 Requirements
-- Python 3.x
-- Hadoop Streaming (for MapReduce)
-- Apache Spark (for PySpark)
 
-### 🚀 How to Run (Example for Hadoop)
 
-```bash
-# Run MapReduce Job
-hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
-  -input input.txt \
-  -output output \
-  -mapper mapper.py \
-  -reducer reducer.py
