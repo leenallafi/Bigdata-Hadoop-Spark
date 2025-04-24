@@ -20,7 +20,7 @@ hadoop/
 
 ---
 
-## 📦 Problem 1: Conversion Rate Calculation (Folder: `conversion-rate/`)
+## 📦 Problem 1: Conversion Rate Calculation (Folder: `conversion-rate`)
 
 ### 📝 Problem Description
 You are analyzing e-commerce logs from the "E-Shop" website to calculate the **conversion rate** of each item. The logs contain user actions such as `view`, `add_to_cart`, and `purchase`. The conversion rate is defined as:
