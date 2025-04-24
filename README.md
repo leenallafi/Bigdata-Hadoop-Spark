@@ -1,12 +1,18 @@
+
 # BigData-Hadoop-Spark
 
 
-This repository contains two MapReduce solutions built using Python for Hadoop Streaming. Each problem demonstrates the use of the MapReduce programming model to solve real-world data analysis tasks involving e-commerce and web server logs.
+This repository contains two real-world data analysis problems, solved using both:
+- **Hadoop MapReduce (Python + Streaming)**
+- **Apache Spark (PySpark)**
+
+These problems simulate tasks a data engineer or analyst may encounter when working with large-scale log files from e-commerce platforms and web servers.
 
 ---
 
 ## 📁 Folder Structure
 
+\`\`\`plaintext
 hadoop/
 ├── conversion-rate/
 │   ├── mapper.py
@@ -15,49 +21,69 @@ hadoop/
     ├── mapper.py
     └── reducer.py
 
----
-
-
----
-
-## 📦 Problem 1: Conversion Rate Calculation (Folder: `conversion-rate`)
-
-### 📝 Problem Description
-You are analyzing e-commerce logs from the "E-Shop" website to calculate the **conversion rate** of each item. The logs contain user actions such as `view`, `add_to_cart`, and `purchase`. The conversion rate is defined as:
-
-
-conversion_rate(item) = number_of_purchases / number_of_views
-
-Some items may be purchased without being viewed, and vice versa.
-
-### 📂 Files
-- `mapper.py`: Extracts item actions and emits `(item, action)` pairs.
-- `reducer.py`: Aggregates actions for each item and calculates the conversion rate.
-
-### ✅ Real-world Validation
-Imagine also that you received confidential information from a warehouse employee suggesting 
-that the item “TypeC_HDMI” is still available in abundance.
+spark/
+├── conversion_rate_spark.py
+└── weblog_analytics_spark.py
+\`\`\`
 
 ---
 
-## 📦 Problem 2: Web Server Log Analysis (Folder: `weblog-analytics/`)
+## 🧩 Problem 1: E-Commerce Conversion Rate
 
-### 📝 Problem Description
-Given a web server log file (`wserv_up.txt`), your task is to find how many times each web page was visited. Each line in the log represents a visit, with the page path formatted as `/file_X.html`.
+### 📌 Scenario
+An e-commerce company, **E-Shop**, records user activities such as \`view\`, \`add_to_cart\`, and \`purchase\`. The management team wants to know the **conversion rate** for each product — a metric defined as:
 
-### 📂 Files
-- `mapper.py`: Extracts file paths from the log.
-- `reducer.py`: Aggregates the number of visits for each page.
+\`\`\`
+conversion_rate = number_of_purchases / number_of_views
+\`\`\`
 
-### ✅ Real-world Insight
-It is rumored that `file_8.html` is useless to visitors, and thus expected to have **very low visit counts**, helping verify your results.
+> 💡 A tip from a warehouse employee suggests that \`TypeC_HDMI\` is overstocked, likely due to a **low conversion rate** — this acts as a real-world validator for your result.
+
+---
+
+## 🧩 Problem 2: Web Server Log Analytics
+
+### 📌 Scenario
+You are provided with a server log file (\`wserv_up.txt\`) from a website. Each line represents a user request to a web page such as \`/file_2.html\`, \`/file_8.html\`, etc.
+
+Your task is to:
+- Count how many times each file (web page) was visited.
+- Identify the most and least visited pages.
+
+> 💡 It\'s rumored that \`file_8.html\` is useless to users and is rarely visited — this provides a useful hint to verify your output.
+
+---
+
+## 🛠️ Hadoop Implementation (Folder: \`hadoop/\`)
+
+This folder uses the **MapReduce programming model**, written in Python and designed for **Hadoop Streaming**.
+
+### 🔹 \`conversion-rate/\`
+- \`mapper.py\`: Emits \`(item, action)\` for each log entry.
+- \`reducer.py\`: Counts views and purchases, then computes conversion rates per item.
+
+### 🔹 \`weblog-analytics/\`
+- \`mapper.py\`: Extracts the web page (e.g., \`/file_3.html\`) from each line.
+- \`reducer.py\`: Aggregates visits and outputs the total per page.
+
+---
+
+## ⚡ Spark Implementation (Folder: \`spark/\`)
+
+This folder contains the **Apache Spark** (PySpark) versions of the same two problems, suitable for distributed computing with large datasets.
+
+### 🔹 \`conversion_rate_spark.py\`
+- Reads the e-commerce log file.
+- Parses each line and aggregates view/purchase counts using RDD or DataFrame operations.
+- Computes and displays the conversion rate for each item.
+
+### 🔹 \`weblog_analytics_spark.py\`
+- Reads the web server log file.
+- Extracts file paths and counts occurrences using Spark transformations.
+- Displays sorted counts of page visits.
 
 ---
 
 
-
-
-### 📝 Problem Description
-You are analyzing e-commerce logs from the "E-Shop" website to calculate the **conversion rate** of each item. The logs contain user actions such as `view`, `add_to_cart`, and `purchase`. The conversion rate is defined as:
 
 
