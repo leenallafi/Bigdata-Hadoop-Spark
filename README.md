@@ -16,9 +16,9 @@ BigData-Hadoop-Spark/ ├── hadoop/ │ ├── conversion-rate/ │ │ �
 
 ---
 
-## 🛠 Hadoop MapReduce Solutions (`hadoop/`)
+## 🛠 Hadoop MapReduce Solutions (`hadoop`)
 
-### 📦 `conversion-rate/`
+### 📦 `conversion-rate`
 #### 🧩 Problem: E-Commerce Conversion Rate
 
 You are analyzing logs from the “E-Shop” website to calculate the **conversion rate** of each item. User actions include `view`, `add_to_cart`, and `purchase`.
@@ -37,7 +37,7 @@ A warehouse rumor says **"TypeC_HDMI"** is abundantly available, so it should sh
 
 ---
 
-### 📦 `weblog-analytics/`
+### 📦 `weblog-analytics`
 #### 🧩 Problem: Web Page Visit Frequency
 
 Given a web server log file, determine which web pages are most and least visited. Each line is a user request for a page like `/file_X.html`.
@@ -51,7 +51,7 @@ It's rumored that `/file_8.html` is unimportant, so it should have a low number 
 
 ---
 
-## ⚡ Spark Solutions (`spark/`)
+## ⚡ Spark Solutions (`spark`)
 
 ### 🔹 `human_activity_classification_spark.py`
 #### 🧩 Problem: Human Activity Recognition (HAR)
