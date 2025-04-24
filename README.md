@@ -1,89 +1,107 @@
+# 📊 BigData-Hadoop-Spark
 
-# BigData-Hadoop-Spark
+This repository contains two main categories of data analytics solutions:
 
-
-This repository contains two real-world data analysis problems, solved using both:
-- **Hadoop MapReduce (Python + Streaming)**
-- **Apache Spark (PySpark)**
-
-These problems simulate tasks a data engineer or analyst may encounter when working with large-scale log files from e-commerce platforms and web servers.
+- **Hadoop**: Solutions using Python MapReduce with Hadoop Streaming for scalable log and activity analysis.
+- **Spark**: Scalable machine learning and clustering projects using PySpark for classification and unsupervised learning.
 
 ---
+
+
 
 ## 📁 Folder Structure
 
-\`\`\`plaintext
-hadoop/
-├── conversion-rate/
-│   ├── mapper.py
-│   └── reducer.py
-└── weblog-analytics/
-    ├── mapper.py
-    └── reducer.py
+BigData-Hadoop-Spark/ ├── hadoop/ │ ├── conversion-rate/ │ │ ├── mapper.py │ │ └── reducer.py │ └── weblog-analytics/ │ ├── mapper.py │ └── reducer.py └── spark/ ├── human_activity_classification_spark.py └── cybersecurity_clustering_spark.py
 
-spark/
-├── conversion_rate_spark.py
-└── weblog_analytics_spark.py
-\`\`\`
 
 ---
 
-## 🧩 Problem 1: E-Commerce Conversion Rate
+## 🛠 Hadoop MapReduce Solutions (`hadoop/`)
 
-### 📌 Scenario
-An e-commerce company, **E-Shop**, records user activities such as \`view\`, \`add_to_cart\`, and \`purchase\`. The management team wants to know the **conversion rate** for each product — a metric defined as:
+### 📦 `conversion-rate/`
+#### 🧩 Problem: E-Commerce Conversion Rate
 
-\`\`\`
-conversion_rate = number_of_purchases / number_of_views
-\`\`\`
+You are analyzing logs from the “E-Shop” website to calculate the **conversion rate** of each item. User actions include `view`, `add_to_cart`, and `purchase`.
 
-> 💡 A tip from a warehouse employee suggests that \`TypeC_HDMI\` is overstocked, likely due to a **low conversion rate** — this acts as a real-world validator for your result.
+📌 **Formula**:  
+`conversion_rate(item) = number_of_purchases / number_of_views`
 
----
+Some purchases might occur without views, and vice versa.
 
-## 🧩 Problem 2: Web Server Log Analytics
+#### 📂 Files:
+- `mapper.py`: Emits `(item, action)` pairs.
+- `reducer.py`: Aggregates actions and computes conversion rates.
 
-### 📌 Scenario
-You are provided with a server log file (\`wserv_up.txt\`) from a website. Each line represents a user request to a web page such as \`/file_2.html\`, \`/file_8.html\`, etc.
-
-Your task is to:
-- Count how many times each file (web page) was visited.
-- Identify the most and least visited pages.
-
-> 💡 It\'s rumored that \`file_8.html\` is useless to users and is rarely visited — this provides a useful hint to verify your output.
+✅ **Real-World Insight**:  
+A warehouse rumor says **"TypeC_HDMI"** is abundantly available, so it should show a low conversion rate, validating your results.
 
 ---
 
-## 🛠️ Hadoop Implementation (Folder: \`hadoop/\`)
+### 📦 `weblog-analytics/`
+#### 🧩 Problem: Web Page Visit Frequency
 
-This folder uses the **MapReduce programming model**, written in Python and designed for **Hadoop Streaming**.
+Given a web server log file, determine which web pages are most and least visited. Each line is a user request for a page like `/file_X.html`.
 
-### 🔹 \`conversion-rate/\`
-- \`mapper.py\`: Emits \`(item, action)\` for each log entry.
-- \`reducer.py\`: Counts views and purchases, then computes conversion rates per item.
+#### 📂 Files:
+- `mapper.py`: Extracts web page visits from log lines.
+- `reducer.py`: Counts total visits per page.
 
-### 🔹 \`weblog-analytics/\`
-- \`mapper.py\`: Extracts the web page (e.g., \`/file_3.html\`) from each line.
-- \`reducer.py\`: Aggregates visits and outputs the total per page.
-
----
-
-## ⚡ Spark Implementation (Folder: \`spark/\`)
-
-This folder contains the **Apache Spark** (PySpark) versions of the same two problems, suitable for distributed computing with large datasets.
-
-### 🔹 \`conversion_rate_spark.py\`
-- Reads the e-commerce log file.
-- Parses each line and aggregates view/purchase counts using RDD or DataFrame operations.
-- Computes and displays the conversion rate for each item.
-
-### 🔹 \`weblog_analytics_spark.py\`
-- Reads the web server log file.
-- Extracts file paths and counts occurrences using Spark transformations.
-- Displays sorted counts of page visits.
+✅ **Real-World Insight**:  
+It's rumored that `/file_8.html` is unimportant, so it should have a low number of visits, serving as a sanity check.
 
 ---
 
+## ⚡ Spark Solutions (`spark/`)
 
+### 🔹 `human_activity_classification_spark.py`
+#### 🧩 Problem: Human Activity Recognition (HAR)
 
+Using the `HAR_3000.csv` dataset, recognize physical activities using sensor data from wearable devices.
 
+#### 💡 Steps:
+1. Read the dataset into a Spark DataFrame.
+2. Use `StringIndexer` to encode `Activity`.
+3. Prepare features for **Logistic Regression**.
+4. Train/Test split (80/20, seed=3).
+5. Apply **10-fold cross-validation** with Logistic Regression.
+6. Evaluate using **accuracy, precision, recall, F1-score**.
+7. Apply **Random Forest** with grid search:
+   - Trees: `[10, 15, 20, 25]`
+   - Max depth: `[3, 5, 7, 9]`
+8. Extract the top **50 important features**.
+9. Train Logistic Regression on reduced features.
+10. Compare performance before and after feature selection.
+
+---
+
+### 🔹 `cybersecurity_clustering_spark.py`
+#### 🧩 Problem: Cybersecurity Threat Clustering
+
+Analyze `ben_inf_allFeatures_balanced_FS01.csv`, a dataset with features related to cybersecurity and network activity.
+
+#### 💡 Steps:
+1. Load the dataset with Spark.
+2. Prepare features for clustering.
+3. Apply **KMeans** clustering with `k` in `[2–10]`.
+4. Compute **Silhouette Score** for each value of k.
+5. Visualize or compare scores to find optimal **k**.
+6. Use findings to help detect abnormal or suspicious behavior patterns.
+
+---
+
+## ✅ Getting Started
+
+### 📦 Requirements
+- Python 3.x
+- Hadoop Streaming (for MapReduce)
+- Apache Spark (for PySpark)
+
+### 🚀 How to Run (Example for Hadoop)
+
+```bash
+# Run MapReduce Job
+hadoop jar /usr/lib/hadoop/hadoop-streaming.jar \
+  -input input.txt \
+  -output output \
+  -mapper mapper.py \
+  -reducer reducer.py
