@@ -35,7 +35,8 @@ Some items may be purchased without being viewed, and vice versa.
 - `reducer.py`: Aggregates actions for each item and calculates the conversion rate.
 
 ### ✅ Real-world Validation
-According to a warehouse insider, `TypeC_HDMI` should show **low conversion**, which is used to validate the accuracy of your results.
+Imagine also that you received confidential information from a warehouse employee suggesting 
+that the item “TypeC_HDMI” is still available in abundance.
 
 ---
 
