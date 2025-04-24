@@ -24,6 +24,8 @@ hadoop/
 
 ### 📝 Problem Description
 You are analyzing e-commerce logs from the "E-Shop" website to calculate the **conversion rate** of each item. The logs contain user actions such as `view`, `add_to_cart`, and `purchase`. The conversion rate is defined as:
+
+
 conversion_rate(item) = number_of_purchases / number_of_views
 
 Some items may be purchased without being viewed, and vice versa.
